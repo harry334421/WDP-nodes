@@ -36,14 +36,13 @@ ComfyUI 自定义节点包：**上传自己的黑白遮罩图，直接转成 `MA
 
 ## 安装
 
-仓库地址：**https://github.com/harry334421/WDP-nodes**（**私有仓库**，克隆需要凭据，做法见「私有仓库授权」）
+仓库地址：**https://github.com/harry334421/WDP-nodes**（公开仓库，直接克隆即可，无需凭据）
 
 ### 方式一：绘世启动器（另一个台机器最省事）
 
-1. 先在目标机器上授权一次（见下节「私有仓库授权」），确保 `git ls-remote` 能免交互拉到；
-2. 启动器 → **版本管理 → 安装新扩展**；
-3. 粘贴 `https://github.com/harry334421/WDP-nodes.git`（或直接贴仓库主页地址）；
-4. 安装完成后重启 ComfyUI。
+1. 启动器 → **版本管理 → 安装新扩展**；
+2. 粘贴 `https://github.com/harry334421/WDP-nodes.git`（或直接贴仓库主页地址）；
+3. 安装完成后重启 ComfyUI。
 
 > 启动器拉 GitHub 只认 Windows 系统代理（`netsh winhttp`），不走它自己面板里的代理框；拉不动时先在系统里挂上 Clash 的系统代理。
 
@@ -63,48 +62,6 @@ git clone https://github.com/harry334421/WDP-nodes.git
 装好后**重启 ComfyUI**，节点出现在右键菜单 `WDP-nodes → 遮罩` 下，也可直接搜索 `遮罩图上传` / `WDP`。
 
 无需安装任何依赖（只用 ComfyUI 自带的 `torch` / `numpy` / `Pillow`）。
-
-## 私有仓库授权（另一台机器做一次即可）
-
-仓库是私有的，所以另一台机器克隆前必须先拿到读权限。三选一：
-
-### A. GitHub 登录（最省事，HTTPS）
-
-在那台机器上随便找个终端跑一次，让它弹登录框：
-
-```bash
-git ls-remote https://github.com/harry334421/WDP-nodes.git
-```
-
-按提示浏览器登录 GitHub 后，凭据会存进该机器的 Windows 凭据管理器，之后启动器 / Manager / 命令行 clone 都直接复用。
-
-### B. Deploy Key（只读、不共享账号，推荐）
-
-在那台机器上：
-
-```bash
-ssh-keygen -t ed25519 -C "wdp-nodes second pc" -f ~/.ssh/wdp_nodes
-# 复制公钥
-cat ~/.ssh/wdp_nodes.pub
-```
-
-把公钥加到 **仓库 → Settings → Deploy keys → Add deploy key**（不要勾 "Allow write access"），然后：
-
-```bash
-git clone git@github.com:harry334421/WDP-nodes.git
-```
-
-Windows 记得有 `~/.ssh/config` 指向这把私钥（或 `ssh-add`）。
-
-### C. Fine-grained PAT（只给这个仓库 Contents: Read）
-
-GitHub → Settings → Developer settings → Fine-grained tokens → 只勾选 `WDP-nodes` + `Contents: Read-only`。用它 clone 时：
-
-```bash
-git clone https://harry334421:<TOKEN>@github.com/harry334421/WDP-nodes.git
-```
-
-> 注意：这种方式会把 token 落到 `.git/config` 的 remote URL 里，介意就用 A 或 B。
 
 ### 更新
 
