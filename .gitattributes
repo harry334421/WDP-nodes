@@ -1,0 +1,5 @@
+# 统一用 LF 存储与检出，避免 Windows/macOS/Linux 之间出现纯换行差异
+* text=auto eol=lf
+*.png  binary
+*.jpg  binary
+*.webp binary

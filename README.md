@@ -111,5 +111,8 @@ WDP 遮罩图上传 (mask) ───┴────────────┘
 WDP-nodes/
 ├─ __init__.py        # 注册节点
 ├─ nodes_mask.py      # 节点实现
-└─ README.md
+├─ README.md
+├─ LICENSE            # MIT
+├─ .gitattributes     # 统一 LF
+└─ .gitignore
 ```
